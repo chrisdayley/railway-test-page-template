@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2200" height="1400" viewBox="0 0 2200 1400">
+  <rect width="100%" height="100%" fill="white"/>
+
+  <!-- subtle pen stroke texture -->
+  <defs>
+    <filter id="penRough" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="1" seed="7" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.2" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </defs>
+
+  <text x="260" y="700"
+        fill="#0b1f3b"
+        font-size="230"
+        font-weight="500"
+        font-family="'Segoe Script','Snell Roundhand','Bradley Hand','Lucida Handwriting','Apple Chancery','Comic Sans MS',cursive"
+        letter-spacing="1"
+        filter="url(#penRough)">
+    Chris Dayley
+  </text>
+
+  <text x="275" y="865"
+        fill="#0b1f3b"
+        font-size="84"
+        font-family="'Segoe Script','Snell Roundhand','Bradley Hand','Lucida Handwriting',cursive"
+        letter-spacing="2"
+        opacity="0.95"
+        filter="url(#penRough)">
+    03-17-26
+  </text>
+</svg>
