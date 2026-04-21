@@ -6,318 +6,445 @@
   <title>GetOut Homepage Mockup</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --bg: #fbf7f1;
+      --surface: #ffffff;
+      --surface-soft: #f7f1e8;
+      --text: #17333d;
+      --muted: #5f747b;
+      --line: #eadfce;
+      --green: #0e7b66;
+      --green-dark: #0a5c4c;
+      --gold: #f6bf63;
+      --shadow: 0 18px 50px rgba(24, 41, 46, 0.08);
+      --radius: 24px;
+      --wrap: 1180px;
+    }
     * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: Inter, Arial, sans-serif;
-      color: #17333d;
-      background: #f7f1e8;
+      background: linear-gradient(180deg, #f7f1e8 0%, #fbf7f1 100%);
+      color: var(--text);
     }
     .page {
-      max-width: 1440px;
-      margin: 0 auto;
-      background: #fffaf3;
       min-height: 100vh;
     }
+    .wrap {
+      width: min(var(--wrap), calc(100% - 40px));
+      margin: 0 auto;
+    }
     .hero {
+      padding: 28px 0 24px;
+    }
+    .hero-shell {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.7);
+      border-radius: 32px;
+      background:
+        radial-gradient(circle at top right, rgba(246,191,99,.28), transparent 26%),
+        radial-gradient(circle at bottom left, rgba(14,123,102,.12), transparent 24%),
+        linear-gradient(135deg, #fffdf9 0%, #f8efe3 100%);
+      box-shadow: var(--shadow);
+    }
+    .hero-grid {
       display: grid;
-      grid-template-columns: 1.05fr .95fr;
-      min-height: 700px;
+      grid-template-columns: 1.04fr .96fr;
+      align-items: center;
+      min-height: 690px;
     }
     .hero-copy {
-      padding: 88px 72px 60px;
-      background: linear-gradient(180deg, #fbf1df 0%, #fffaf3 100%);
+      padding: 68px 0 68px 64px;
+      position: relative;
+      z-index: 2;
     }
     .eyebrow {
-      display: inline-block;
-      margin-bottom: 24px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
       padding: 9px 14px;
       border-radius: 999px;
-      background: #ffe5a8;
-      color: #6f4c08;
+      background: rgba(255,255,255,.78);
+      border: 1px solid #efe1cf;
+      color: #7d5b14;
       font-size: 13px;
       font-weight: 800;
       letter-spacing: .02em;
+      backdrop-filter: blur(8px);
+    }
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--gold);
     }
     h1 {
-      margin: 0 0 20px;
-      max-width: 620px;
-      font-size: 58px;
-      line-height: 1.02;
-      letter-spacing: -0.03em;
+      margin: 18px 0 18px;
+      max-width: 600px;
+      font-size: clamp(46px, 5vw, 68px);
+      line-height: .98;
+      letter-spacing: -0.045em;
+      font-weight: 900;
     }
     .sub {
-      max-width: 610px;
-      margin: 0 0 28px;
-      font-size: 21px;
-      line-height: 1.5;
-      color: #446068;
+      max-width: 580px;
+      margin: 0 0 24px;
+      font-size: 20px;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+    .hero-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 26px;
     }
     .cta {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       padding: 18px 30px;
-      border-radius: 14px;
-      background: #0d7c66;
-      color: white;
-      font-size: 18px;
-      font-weight: 800;
+      border-radius: 16px;
       text-decoration: none;
-      box-shadow: 0 12px 28px rgba(13, 124, 102, 0.2);
+      background: linear-gradient(180deg, var(--green) 0%, var(--green-dark) 100%);
+      color: #fff;
+      font-weight: 800;
+      font-size: 18px;
+      box-shadow: 0 16px 26px rgba(14,123,102,.24);
     }
     .micro {
-      margin-top: 14px;
-      max-width: 530px;
-      color: #5b7278;
-      font-size: 15px;
-      line-height: 1.45;
+      font-size: 14px;
+      color: #678086;
+      font-weight: 500;
     }
-    .trust-row {
+    .benefit-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 18px 24px;
-      margin-top: 28px;
-      font-size: 14px;
-      font-weight: 700;
-      color: #274851;
+      gap: 12px;
+      margin-bottom: 24px;
     }
-    .trust-row span {
+    .benefit-pill {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-    }
-    .dot {
-      width: 8px;
-      height: 8px;
+      padding: 11px 14px;
       border-radius: 999px;
-      background: #0d7c66;
-      display: inline-block;
+      background: rgba(255,255,255,.82);
+      border: 1px solid #eee1d0;
+      color: #264750;
+      font-size: 14px;
+      font-weight: 700;
     }
-    .hero-art {
+    .check {
+      width: 20px;
+      height: 20px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      background: #e8f5f1;
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 900;
+    }
+    .proof-card {
+      max-width: 500px;
+      padding: 18px 18px 16px;
+      border-radius: 20px;
+      background: rgba(255,255,255,.84);
+      border: 1px solid #efe2d2;
+      backdrop-filter: blur(8px);
+    }
+    .proof-top {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      color: #2b4a52;
+      font-size: 14px;
+      font-weight: 800;
+    }
+    .stars { color: #f0a93a; letter-spacing: .06em; }
+    .proof-copy {
+      margin: 0;
+      color: #5d7278;
+      font-size: 15px;
+      line-height: 1.55;
+    }
+    .hero-visual {
       position: relative;
-      overflow: hidden;
-      background: linear-gradient(135deg, #d9efe7 0%, #f8d7b6 100%);
+      min-height: 690px;
+      padding: 42px 54px 42px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    .shape, .phone {
+    .glow {
       position: absolute;
+      inset: auto 80px 54px auto;
+      width: 400px;
+      height: 400px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(246,191,99,.22) 0%, rgba(246,191,99,0) 72%);
+      filter: blur(6px);
+    }
+    .photo-stack {
+      position: relative;
+      width: min(520px, 100%);
+      height: 560px;
+    }
+    .photo-card {
+      position: absolute;
+      overflow: hidden;
       border-radius: 28px;
-      box-shadow: 0 20px 44px rgba(0, 0, 0, 0.12);
+      box-shadow: 0 24px 44px rgba(0,0,0,.14);
+      background: #ddd;
     }
-    .shape.a {
-      right: 88px;
-      top: 92px;
-      width: 260px;
-      height: 360px;
-      background: #fff;
-      transform: rotate(-6deg);
+    .photo-card.large {
+      right: 0;
+      top: 24px;
+      width: 360px;
+      height: 500px;
+      background: linear-gradient(135deg, #f5d9ba 0%, #f3bf85 46%, #d77751 100%);
     }
-    .shape.b {
-      right: 262px;
+    .photo-card.small-a {
+      left: 8px;
+      top: 0;
+      width: 200px;
+      height: 220px;
+      background: linear-gradient(135deg, #bfe4da 0%, #7fc8b6 45%, #3a8b7b 100%);
+      transform: rotate(-8deg);
+    }
+    .photo-card.small-b {
+      left: 24px;
+      bottom: 18px;
+      width: 220px;
+      height: 180px;
+      background: linear-gradient(135deg, #ffe0ac 0%, #f7bf62 55%, #d08d27 100%);
+      transform: rotate(6deg);
+    }
+    .overlay-card {
+      position: absolute;
+      left: 110px;
       top: 188px;
-      width: 214px;
-      height: 288px;
-      background: #f7b267;
-      transform: rotate(7deg);
-    }
-    .shape.c {
-      right: 128px;
-      top: 176px;
-      width: 248px;
-      height: 318px;
-      background: #2f7d6d;
-      transform: rotate(8deg);
-    }
-    .phone {
-      right: 168px;
-      top: 122px;
-      width: 272px;
-      height: 474px;
-      border: 10px solid #17333d;
-      background: #17333d;
-      border-radius: 36px;
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.18);
-    }
-    .screen {
-      height: 100%;
+      width: 250px;
       padding: 18px;
-      border-radius: 24px;
-      background: #fff8ef;
+      border-radius: 20px;
+      background: rgba(255,255,255,.92);
+      border: 1px solid rgba(255,255,255,.6);
+      box-shadow: 0 18px 35px rgba(14, 31, 36, 0.12);
+      backdrop-filter: blur(8px);
     }
-    .pill {
+    .overlay-label {
       display: inline-block;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       padding: 6px 10px;
       border-radius: 999px;
-      background: #eaf7f2;
-      color: #0d7c66;
+      background: #eef8f4;
+      color: var(--green);
       font-size: 12px;
       font-weight: 800;
     }
-    .app-card {
-      margin-bottom: 14px;
-      padding: 16px;
-      border-radius: 18px;
-      background: white;
-      box-shadow: 0 8px 22px rgba(0,0,0,.08);
-    }
-    .app-title {
-      margin-bottom: 10px;
+    .overlay-title {
+      margin: 0 0 10px;
       font-size: 20px;
+      line-height: 1.15;
       font-weight: 800;
     }
-    .line {
-      height: 10px;
-      margin: 8px 0;
-      border-radius: 999px;
-      background: #e4ecec;
-    }
-    .line.med { width: 78%; }
-    .line.short { width: 62%; }
-    .thumb-grid {
+    .overlay-list {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
+      gap: 8px;
+      color: #557076;
+      font-size: 14px;
     }
-    .thumb {
-      height: 84px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, #ffd694, #f7b267);
+    .overlay-list div {
+      display: flex;
+      gap: 8px;
+      align-items: center;
     }
-    .thumb.two { background: linear-gradient(135deg, #b8e0d5, #6bb7a5); }
-    .thumb.three { background: linear-gradient(135deg, #f7c8aa, #ea8f6a); }
-    .thumb.four { background: linear-gradient(135deg, #d9e9a6, #94c973); }
-    .info-section {
-      padding: 68px 72px 80px;
-      background: white;
+    .explain {
+      padding: 10px 0 90px;
     }
-    .info-shell {
-      padding: 40px 36px;
-      border: 1px solid #ecdccb;
-      border-radius: 28px;
-      background: white;
-      box-shadow: 0 10px 30px rgba(49, 61, 66, 0.05);
+    .section-label {
+      margin-bottom: 12px;
+      color: #0e7b66;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .explain-head {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 40px;
+      align-items: end;
+      margin-bottom: 28px;
     }
     h2 {
-      margin: 0 0 28px;
-      font-size: 40px;
-      line-height: 1.08;
-      letter-spacing: -0.02em;
+      margin: 0;
+      font-size: clamp(34px, 4vw, 50px);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+      font-weight: 900;
+    }
+    .explain-intro {
+      margin: 0;
+      max-width: 500px;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.6;
     }
     .cards {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
+      gap: 20px;
     }
     .card {
-      min-height: 220px;
-      padding: 24px;
-      border-radius: 22px;
-      border: 1px solid #efe1d0;
-      background: #fcf7f0;
+      padding: 28px;
+      border-radius: 26px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.96) 0%, rgba(250,244,236,0.96) 100%);
+      border: 1px solid var(--line);
+      box-shadow: 0 12px 28px rgba(29, 47, 53, 0.06);
     }
-    .icon {
-      width: 48px;
-      height: 48px;
-      display: flex;
+    .card-icon {
+      width: 54px;
+      height: 54px;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 16px;
-      border-radius: 14px;
-      background: #e5f5f1;
-      font-size: 24px;
+      margin-bottom: 18px;
+      border-radius: 18px;
+      background: #ecf8f4;
+      color: var(--green);
+      font-size: 26px;
     }
     .card h3 {
       margin: 0 0 12px;
-      font-size: 22px;
-      line-height: 1.2;
+      font-size: 24px;
+      line-height: 1.14;
+      letter-spacing: -0.03em;
     }
     .card p {
       margin: 0;
-      color: #4a6168;
+      color: var(--muted);
       font-size: 16px;
-      line-height: 1.55;
+      line-height: 1.6;
     }
-    .note {
+    .next-note {
       margin-top: 18px;
-      color: #687c81;
+      color: #73878c;
       font-size: 14px;
     }
-    @media (max-width: 960px) {
-      .hero, .cards { grid-template-columns: 1fr; }
-      .hero-copy, .info-section { padding: 32px 20px; }
-      .hero-art { min-height: 480px; }
-      .phone { right: 50%; transform: translateX(50%); top: 78px; }
-      .shape.a { right: 50%; transform: translateX(30%) rotate(-6deg); }
-      .shape.b { display: none; }
-      .shape.c { right: 50%; transform: translateX(55%) rotate(8deg); }
-      h1 { font-size: 42px; }
-      .sub { font-size: 18px; }
-      h2 { font-size: 32px; }
+    @media (max-width: 1024px) {
+      .hero-grid, .explain-head, .cards { grid-template-columns: 1fr; }
+      .hero-copy { padding: 38px 24px 20px; }
+      .hero-visual { min-height: 540px; padding: 0 24px 32px; }
+      .hero-shell { border-radius: 24px; }
+      .photo-stack { width: 100%; height: 480px; }
+      .photo-card.large { width: 300px; height: 420px; right: 12px; }
+      .overlay-card { left: 24px; top: 210px; width: 230px; }
+      .explain { padding: 8px 0 64px; }
+      .wrap { width: min(var(--wrap), calc(100% - 28px)); }
+    }
+    @media (max-width: 640px) {
+      .hero { padding-top: 14px; }
+      .hero-copy { padding: 28px 18px 12px; }
+      .hero-visual { padding: 0 18px 24px; min-height: 430px; }
+      .benefit-row { gap: 10px; }
+      .benefit-pill { font-size: 13px; }
+      .photo-stack { height: 390px; }
+      .photo-card.large { width: 240px; height: 330px; }
+      .photo-card.small-a { width: 140px; height: 160px; }
+      .photo-card.small-b { width: 150px; height: 120px; }
+      .overlay-card { top: 165px; left: 14px; width: 205px; padding: 14px; }
+      .overlay-title { font-size: 18px; }
+      .proof-card { padding: 16px; }
+      .card { padding: 22px; }
     }
   </style>
 </head>
 <body>
   <div class="page">
     <section class="hero">
-      <div class="hero-copy">
-        <div class="eyebrow">100+ attractions • Use from your phone</div>
-        <h1>One Pass to the Best Family Fun, Attractions &amp; Experiences</h1>
-        <p class="sub">Get access to 100+ attractions, activities, and local experiences with one membership you can use all year long.</p>
-        <a class="cta" href="#">Get My Membership</a>
-        <div class="micro">Use it right from your phone. Great for families, couples, and gifting.</div>
-        <div class="trust-row">
-          <span><i class="dot"></i>100+ attractions</span>
-          <span><i class="dot"></i>One membership per person</span>
-          <span><i class="dot"></i>Great for families, couples, and gifting</span>
-        </div>
-      </div>
-      <div class="hero-art">
-        <div class="shape a"></div>
-        <div class="shape b"></div>
-        <div class="shape c"></div>
-        <div class="phone">
-          <div class="screen">
-            <div class="pill">GetOut Membership</div>
-            <div class="app-card">
-              <div class="app-title">Explore nearby fun</div>
-              <div class="line med"></div>
-              <div class="line short"></div>
+      <div class="wrap hero-shell">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <div class="eyebrow">Family fun, local attractions, and year-round savings</div>
+            <h1>One Pass to the Best Family Fun, Attractions &amp; Experiences</h1>
+            <p class="sub">Get access to 100+ attractions, activities, and local experiences with one membership you can use all year long.</p>
+
+            <div class="hero-actions">
+              <a class="cta" href="#">Get My Membership</a>
+              <div class="micro">Use it right from your phone. Great for families, couples, and gifting.</div>
             </div>
-            <div class="thumb-grid">
-              <div class="thumb"></div>
-              <div class="thumb two"></div>
-              <div class="thumb three"></div>
-              <div class="thumb four"></div>
+
+            <div class="benefit-row">
+              <div class="benefit-pill"><span class="check">✓</span>100+ attractions</div>
+              <div class="benefit-pill"><span class="check">✓</span>One membership per person</div>
+              <div class="benefit-pill"><span class="check">✓</span>Great for gifting</div>
+            </div>
+
+            <div class="proof-card">
+              <div class="proof-top"><span class="stars">★★★★★</span> Loved by families looking for more to do, for less</div>
+              <p class="proof-copy">A stronger hero should blend clarity, value, and emotional payoff. This version explains the offer faster, supports the CTA with practical reassurance, and makes the product feel more tangible above the fold.</p>
+            </div>
+          </div>
+
+          <div class="hero-visual">
+            <div class="glow"></div>
+            <div class="photo-stack">
+              <div class="photo-card small-a"></div>
+              <div class="photo-card large"></div>
+              <div class="photo-card small-b"></div>
+              <div class="overlay-card">
+                <div class="overlay-label">Membership benefits</div>
+                <div class="overlay-title">Make plans faster, spend less, do more</div>
+                <div class="overlay-list">
+                  <div><span class="check">✓</span>See included places in one app</div>
+                  <div><span class="check">✓</span>Redeem directly from your phone</div>
+                  <div><span class="check">✓</span>Get more value after just a few visits</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="info-section">
-      <div class="info-shell">
-        <h2>One membership, hundreds of places to go</h2>
+    <section class="explain">
+      <div class="wrap">
+        <div class="section-label">New section above “How the Membership Works”</div>
+        <div class="explain-head">
+          <h2>One membership, hundreds of places to go</h2>
+          <p class="explain-intro">This section should make the offer feel simpler and more valuable before users hit the current explainer content. The goal is to answer “what am I actually getting?” in a way that is easy to scan.</p>
+        </div>
+
         <div class="cards">
           <article class="card">
-            <div class="icon">🎟️</div>
+            <div class="card-icon">🎟️</div>
             <h3>All your local fun in one pass</h3>
             <p>Get access to local attractions, family activities, and seasonal experiences all in one pass.</p>
           </article>
+
           <article class="card">
-            <div class="icon">📱</div>
+            <div class="card-icon">📱</div>
             <h3>Use it all year</h3>
             <p>Buy once, then open the app and redeem offers as you go throughout the year.</p>
           </article>
+
           <article class="card">
-            <div class="icon">💸</div>
+            <div class="card-icon">💸</div>
             <h3>Pays for itself quickly</h3>
             <p>Many members recover the full cost of the pass in just a few visits.</p>
           </article>
         </div>
-        <div class="note">Suggested placement: directly above the existing “How the Membership Works” section.</div>
+
+        <div class="next-note">Design direction: stronger contrast, less generic illustration, more real-world lifestyle energy, simpler CTA hierarchy, and tighter benefit framing.</div>
       </div>
     </section>
   </div>
